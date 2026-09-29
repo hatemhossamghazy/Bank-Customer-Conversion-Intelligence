@@ -45,9 +45,9 @@ import xgboost as xgb
 # =========================================================
 @st.cache_resource
 def load_assets():
-    preprocessor = joblib.load("model/preprocessor.pkl")
+    preprocessor = joblib.load("preprocessor.pkl")
     model = xgb.XGBClassifier()
-    model.load_model("model/xgb_model.json")
+    model.load_model("xgb_model.json")
     return preprocessor, model
 
 
