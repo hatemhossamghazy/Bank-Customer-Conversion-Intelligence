@@ -1,3 +1,4 @@
+import sys
 import joblib
 import numpy as np
 import pandas as pd
@@ -14,7 +15,7 @@ from sklearn.metrics import (
 )
 
 
-# 1. Custom Function Transformer (مهم جداً وجودها قبل التحميل)
+# 1. تعريف الدالة المخصصة
 def encode_cyclical_month(df):
     month_map = {
         "jan": 1,
@@ -40,6 +41,10 @@ def encode_cyclical_month(df):
     return np.c_[sin_month, cos_month]
 
 
+# 🛑 السطر الأهم: ربط الدالة بـ __main__ ليجدها joblib أثناء فك الضغط
+sys.modules["__main__"].encode_cyclical_month = encode_cyclical_month
+
+
 # 2. Config
 st.set_page_config(
     page_title="Bank Customer Conversion Intelligence",
@@ -53,14 +58,13 @@ st.set_page_config(
 def load_assets():
     preprocessor = joblib.load("preprocessor.pkl")
 
-    # تحميل الموديل عبر XGBClassifier مباشرة من JSON
     model = xgb.XGBClassifier()
     model.load_model("xgb_model.json")
 
     return preprocessor, model
 
 
-# Load Assets & Data
+# باقي الكود كما هو...
 preprocessor, model = load_assets()
 test_results = pd.read_csv("test_results.csv")
 THRESHOLD = 0.22
