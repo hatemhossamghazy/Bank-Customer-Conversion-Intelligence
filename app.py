@@ -52,7 +52,7 @@ def load_assets():
 
 
 preprocessor, model = load_assets()
-test_results = pd.read_csv("test_results.csv")
+test_results = pd.read_csv("output/test_results.csv")
 # =========================================================
 # LOAD DATA
 # =========================================================
