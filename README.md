@@ -1,4 +1,3 @@
-# Bank-Customer-Conversion-Intelligence
 # Bank Customer Conversion Intelligence
 
 ### Predicting and Prioritizing Customers for Term Deposit Campaigns
